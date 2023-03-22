@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type: text/html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Personal Webpage - Gallery</title>
+	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="../styles/themes/material.css">
+	<script src="../scripts/modules/application.js" defer></script>
+	<script src="../scripts/modules/color.js" defer></script>
+	<script src="../scripts/structure.js" defer></script>
+	<script src="../scripts/gallery.js" defer></script>
+</head>
+
+<body style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;">
+	<header class="layer" style="width: 100%; display: grid; grid: '-1- feed gallery about -2-' max-content / 1fr max-content max-content max-content 1fr; gap: var(--size-gap);">
+		<a role="combobox" href="./feed.html" class="layer rounded" style="grid-area: feed;">
+			<span>Feed</span>
+		</a>
+		<a role="combobox" href="./gallery.html" aria-checked="true"  class="layer rounded" style="grid-area: gallery;">
+			<span>Gallery</span>
+		</a>
+		<a role="combobox" href="./about.html" class="layer rounded" style="grid-area: about;">
+			<span>About</span>
+		</a>
+	</header>
+	<main style="width: 100vmin; display: flex; flex-direction: column; gap: var(--size-gap); padding: var(--size-gap); overflow-y: auto;">
+		<section style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--size-gap);">
+			<template id="picture-preset">
+				<picture id="picture-" class="flex layer rounded">
+					<img alt="Picture" style="width: 100%;">
+				</picture>
+			</template>
+		</section>
+		<footer style="display: grid; grid: '-1- link-1 dot-1 link-2 dot-2 link-3 -2-' max-content 'copyright copyright copyright copyright copyright copyright copyright' max-content / 1fr max-content max-content max-content max-content max-content 1fr; place-items: center; gap: var(--size-gap);">
+			<a href="" style="grid-area: link-1;"><strong>Telegram</strong></a>
+			<pre style="grid-area: dot-1;"> • </pre>
+			<a href="" style="grid-area: link-2;"><strong>Instagram</strong></a>
+			<pre style="grid-area: dot-2;"> • </pre>
+			<a href="" style="grid-area: link-3;"><strong>Email</strong></a>
+			<span style="grid-area: copyright;">© 2023 5c08 fa79c8b14a</span>
+		</footer>
+	</main>
+</body>
+
+</html>
