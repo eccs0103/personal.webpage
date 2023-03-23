@@ -339,3 +339,13 @@ picture[id^="picture-"] {
 picture[id^="picture-"] img {
 	aspect-ratio: 1;
 }
+
+div.-map {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	gap: var(--size-gap);
+}
+
+div.-map > *.-key::after {
+	content: ":";
+}
