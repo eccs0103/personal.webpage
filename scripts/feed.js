@@ -65,7 +65,7 @@ try {
 					timeDate.addEventListener(`click`, (event) => {
 						navigator.clipboard.writeText(`${location.origin}${location.pathname}#${articlePost.id}`)
 							.then(() => {
-								Application.alert(`Ссылка к посту скопирована.`);
+								Application.alert(`Link to post copied.`);
 							})
 							.catch((reason) => {
 								Application.prevent(reason);
