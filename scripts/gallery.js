@@ -28,15 +28,7 @@ try {
 		}
 		return result;
 	})();
-
-	/**
-	 * @callback Filter
-	 * @param {Picture} picture
-	 * @param {Number} index
-	 * @returns {Boolean}
-	 */
-
-	//#region Render
+	
 	const color = (() => {
 		const result = Color.tryParse(getComputedStyle(document.documentElement).getPropertyValue(`--color-shadow`));
 		if (!result) {
@@ -45,6 +37,91 @@ try {
 		result.alpha = 0.25;
 		return result.toString(ColorFormat.RGB, true);
 	})();
+
+	//#region Preview
+	/**
+	 * @param {Number} index 
+	 */
+	function preview(index) {
+		const picture = gallery[index];
+		if (picture === undefined) {
+			throw new ReferenceError(`Picture with ${index} index isn't defined.`);
+		}
+		const dialog = document.body.appendChild(document.createElement(`dialog`));
+		dialog.classList.add(`layer`, `flex`);
+		dialog.addEventListener(`click`, (event) => {
+			if (dialog === event.target) {
+				dialog.remove();
+			}
+		});
+		dialog.showModal();
+		{
+			const imgPreview = dialog.appendChild(document.createElement(`img`));
+			imgPreview.src = picture.path;
+			imgPreview.style.maxWidth = `100%`;
+			imgPreview.style.maxHeight = `100%`;
+			imgPreview.style.objectFit = `contain`;
+			{ }
+			const description = dialog.appendChild(document.createElement(`span`));
+			description.classList.add(`depth`, `rounded`);
+			description.style.position = `absolute`;
+			description.style.inset = `auto var(--size-large-gap) var(--size-large-gap) var(--size-large-gap)`;
+			description.style.pointerEvents = `none`;
+			description.innerText = picture.description.trim();
+			{ }
+			const divActions = dialog.appendChild(document.createElement(`div`));
+			divActions.style.position = `absolute`;
+			divActions.style.inset = `0`;
+			divActions.style.display = `grid`;
+			divActions.style.grid = `'left-button -1- right-button' / 1fr 4fr 1fr`;
+			{
+				const buttonLeft = divActions.appendChild(document.createElement(`button`));
+				buttonLeft.style.gridArea = `left-button`;
+				buttonLeft.style.backgroundColor = color;
+				const left = gallery[index + 1];
+				const leftExists = (left !== undefined);
+				buttonLeft.hidden = !leftExists;
+				buttonLeft.addEventListener(`click`, (event) => {
+					if (leftExists) {
+						preview(index + 1);
+						dialog.remove();
+					}
+				});
+				{
+					const imgIcon = buttonLeft.appendChild(document.createElement(`img`));
+					imgIcon.classList.add(`icon`);
+					imgIcon.src = `../resources/left.png`;
+				}
+				const buttonRight = divActions.appendChild(document.createElement(`button`));
+				buttonRight.style.gridArea = `right-button`;
+				buttonRight.style.backgroundColor = color;
+				const right = gallery[index - 1];
+				const rightExists = (right !== undefined);
+				buttonRight.hidden = !rightExists;
+				buttonRight.addEventListener(`click`, (event) => {
+					if (rightExists) {
+						preview(index - 1);
+						dialog.remove();
+					}
+				});
+				{
+					const imgIcon = buttonRight.appendChild(document.createElement(`img`));
+					imgIcon.classList.add(`icon`);
+					imgIcon.src = `../resources/right.png`;
+				}
+			}
+		}
+	}
+	//#endregion
+	
+	/**
+	 * @callback Filter
+	 * @param {Picture} picture
+	 * @param {Number} index
+	 * @returns {Boolean}
+	 */
+	
+	//#region Render
 	/**
 	 * @param {Array<Filter>} filters 
 	 */
@@ -55,81 +132,6 @@ try {
 				//#region Picture
 				const picturePicture = container.appendChild((/** @type {HTMLPictureElement} */ (/** @type {HTMLPictureElement} */(templatePicturePreset.content.querySelector(`picture#picture-`)).cloneNode(true))));
 				picturePicture.id = `picture-${index}`;
-				//#region Preview
-				/**
-				 * @param {Number} index 
-				 */
-				function preview(index) {
-					const picture = gallery[index];
-					if (picture === undefined) {
-						throw new ReferenceError(`Picture with ${index} index isn't defined.`);
-					}
-					const dialog = document.body.appendChild(document.createElement(`dialog`));
-					dialog.classList.add(`layer`, `flex`);
-					dialog.addEventListener(`click`, (event) => {
-						if (dialog === event.target) {
-							dialog.remove();
-						}
-					});
-					dialog.showModal();
-					{
-						const imgPreview = dialog.appendChild(document.createElement(`img`));
-						imgPreview.src = picture.path;
-						imgPreview.style.maxWidth = `100%`;
-						imgPreview.style.maxHeight = `100%`;
-						imgPreview.style.objectFit = `contain`;
-						{ }
-						const description = dialog.appendChild(document.createElement(`span`));
-						description.classList.add(`depth`, `rounded`);
-						description.style.position = `absolute`;
-						description.style.inset = `auto var(--size-large-gap) var(--size-large-gap) var(--size-large-gap)`;
-						description.style.pointerEvents = `none`;
-						description.innerText = picture.description.trim();
-						{ }
-						const divActions = dialog.appendChild(document.createElement(`div`));
-						divActions.style.position = `absolute`;
-						divActions.style.inset = `0`;
-						divActions.style.display = `grid`;
-						divActions.style.grid = `'left-button -1- right-button' / 1fr 4fr 1fr`;
-						{
-							const buttonLeft = divActions.appendChild(document.createElement(`button`));
-							buttonLeft.style.gridArea = `left-button`;
-							buttonLeft.style.backgroundColor = color;
-							const left = gallery[index + 1];
-							const leftExists = (left !== undefined);
-							buttonLeft.hidden = !leftExists;
-							buttonLeft.addEventListener(`click`, (event) => {
-								if (leftExists) {
-									preview(index + 1);
-									dialog.remove();
-								}
-							});
-							{
-								const imgIcon = buttonLeft.appendChild(document.createElement(`img`));
-								imgIcon.classList.add(`icon`);
-								imgIcon.src = `../resources/left.png`;
-							}
-							const buttonRight = divActions.appendChild(document.createElement(`button`));
-							buttonRight.style.gridArea = `right-button`;
-							buttonRight.style.backgroundColor = color;
-							const right = gallery[index - 1];
-							const rightExists = (right !== undefined);
-							buttonRight.hidden = !rightExists;
-							buttonRight.addEventListener(`click`, (event) => {
-								if (rightExists) {
-									preview(index - 1);
-									dialog.remove();
-								}
-							});
-							{
-								const imgIcon = buttonRight.appendChild(document.createElement(`img`));
-								imgIcon.classList.add(`icon`);
-								imgIcon.src = `../resources/right.png`;
-							}
-						}
-					}
-				}
-				//#endregion
 				picturePicture.addEventListener(`click`, (event) => {
 					preview(index);
 				});
@@ -151,6 +153,12 @@ try {
 		//#endregion
 	];
 	render(filters);
+
+	const matches = /#picture-(\d+)/.exec(location.hash);
+	if (matches) {
+		const [, index] = matches.map((item) => Number.parseInt(item));
+		preview(index);
+	}
 	//#endregion
 } catch (exception) {
 	Application.prevent(exception);

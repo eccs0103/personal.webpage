@@ -1,3 +1,4 @@
+"use strict";
 class Animator extends Engine {
 	/**
 	 * @param {HTMLCanvasElement} canvas 
@@ -34,11 +35,24 @@ class Animator extends Engine {
 		this.#handler = handler;
 	}
 	/**
-	 * @param {Number} period time in seconds
-	 * @returns multiplier
+	 * @param {Number} period time in miliseconds
+	 * @returns multiplier - [0, 1]
 	 */
-	pulsar(period) {
-		period = 1000 / period;
+	impulse(period) {
 		return this.time % period / period;
+	}
+	/**
+	 * @param {Number} period time in miliseconds
+	 * @returns multiplier - [-1, 1]
+	 */
+	pulse(period) {
+		return Math.sin(this.impulse(period) * 2 * Math.PI);
+	}
+	/**
+	 * @param {Number} period time in miliseconds
+	 * @returns multiplier - [0, 1]
+	 */
+	bounce(period) {
+		return Math.abs(this.pulse(period));
 	}
 }

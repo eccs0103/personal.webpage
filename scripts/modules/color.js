@@ -1,3 +1,4 @@
+"use strict";
 /** @enum {String} */ const ColorFormat = {
 	/** @readonly */ RGB: `RGB`,
 	/** @readonly */ HSL: `HSL`,
