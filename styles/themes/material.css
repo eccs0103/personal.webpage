@@ -34,7 +34,7 @@
 
 :root {
 	--time-duration: 100ms;
-	--color-highlight: hsl(320deg, 100%, 50%);
+	--color-highlight: hsl(200, 100%, 60%);
 	--color-warn: hsl(60deg, 100%, 50%);
 	--color-error: hsl(0deg, 100%, 75%);
 	--color-shadow: hsla(0, 0%, 50%, 0.75);
