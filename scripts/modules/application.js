@@ -5,7 +5,7 @@
 	/** @readonly */ error: 2,
 };
 class Application {
-	/** @type {String} */ static #developer = `5c08 fa79c8b14a`;
+	/** @type {String} */ static #developer = `Ovsi Karapetyan`;
 	/** @readonly */ static get developer() {
 		return this.#developer;
 	}
