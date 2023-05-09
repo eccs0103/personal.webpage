@@ -1,3 +1,6 @@
+// @ts-ignore
+/** @typedef {import("./structure")} */
+
 "use strict";
 try {
 	const birthday = new Date(`2004-03-24 12:00`);

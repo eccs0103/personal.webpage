@@ -1,3 +1,6 @@
+// @ts-ignore
+/** @typedef {import("./structure")} */
+
 "use strict";
 try {
 	//#region Database

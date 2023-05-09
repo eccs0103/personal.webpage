@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	-webkit-user-select: none;
 	user-select: none;
 	-webkit-user-drag: none;
 	border: none;
@@ -76,6 +77,16 @@ body {
 	display: flex;
 }
 
+*.without-inline-padding,
+*.without-padding {
+	padding-inline: 0;
+}
+
+*.without-block-padding,
+*.without-padding {
+	padding-block: 0;
+}
+
 *.contents {
 	display: contents;
 }
@@ -127,13 +138,13 @@ input[type="checkbox"]:checked + label[role="checkbox"].toggle > span.knob {
 }
 
 input[type="range"] {
-	appearance: none;
 	-webkit-appearance: none;
+	appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-	appearance: none;
 	-webkit-appearance: none;
+	appearance: none;
 	width: var(--size-gap);
 	height: var(--size-gap);
 	border-radius: 50vmin;
@@ -142,6 +153,7 @@ input[type="range"]::-webkit-slider-thumb {
 dialog {
 	min-width: 60vmin;
 	max-width: calc(100vmin - 2 * var(--size-large-gap));
+	width: -moz-fit-content;
 	width: fit-content;
 	max-height: calc(100vh - 2 * var(--size-large-gap));
 	height: fit-content;
@@ -242,6 +254,10 @@ img.icon {
 	aspect-ratio: 1;
 }
 
+img.in-line {
+	height: 1em;
+}
+
 hr {
 	margin: var(--size-gap) 0;
 	padding: calc(var(--size-serpator) / 2) !important;
@@ -258,10 +274,12 @@ code {
 	tab-size: 4;
 	list-style: none inside;
 	counter-reset: index;
+	-webkit-user-select: text;
 	user-select: text;
 }
 
 code * {
+	-webkit-user-select: inherit;
 	user-select: inherit;
 }
 
@@ -286,7 +304,7 @@ code > span::before {
 }
 
 /* Local */
-body {
+	body {
 	/* background-attachment: scroll; */
 	background-repeat: no-repeat;
 	background-size: cover;

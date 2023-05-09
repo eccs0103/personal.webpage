@@ -1,3 +1,8 @@
+// @ts-ignore
+/** @typedef {import("./modules/archive")} */
+// @ts-ignore
+/** @typedef {import("./modules/application")} */
+
 "use strict";
 //#region Post
 class Post {

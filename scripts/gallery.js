@@ -1,3 +1,8 @@
+// @ts-ignore
+/** @typedef {import("./structure")} */
+// @ts-ignore
+/** @typedef {import("./modules/color")} */
+
 "use strict";
 try {
 	//#region Gallery
