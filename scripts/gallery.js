@@ -1,7 +1,7 @@
 // @ts-ignore
-/** @typedef {import("./structure")} */
+/** @typedef {import("./structure.js")} */
 // @ts-ignore
-/** @typedef {import("./modules/color")} */
+/** @typedef {import("./modules/color.js")} */
 
 "use strict";
 try {
@@ -53,7 +53,7 @@ try {
 			throw new ReferenceError(`Picture with ${index} index isn't defined.`);
 		}
 		const dialog = document.body.appendChild(document.createElement(`dialog`));
-		dialog.classList.add(`layer`, `flex`);
+		dialog.classList.add(`layer`, `with-padding`, `flex`);
 		dialog.addEventListener(`click`, (event) => {
 			if (dialog === event.target) {
 				dialog.remove();
@@ -63,12 +63,9 @@ try {
 		{
 			const imgPreview = dialog.appendChild(document.createElement(`img`));
 			imgPreview.src = picture.path;
-			imgPreview.style.maxWidth = `100%`;
-			imgPreview.style.maxHeight = `100%`;
-			imgPreview.style.objectFit = `contain`;
 			{ }
 			const description = dialog.appendChild(document.createElement(`span`));
-			description.classList.add(`depth`, `rounded`);
+			description.classList.add(`depth`, `rounded`, `with-padding`);
 			description.style.position = `absolute`;
 			description.style.inset = `auto var(--size-large-gap) var(--size-large-gap) var(--size-large-gap)`;
 			description.style.pointerEvents = `none`;

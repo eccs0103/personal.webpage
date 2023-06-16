@@ -1,7 +1,7 @@
 // @ts-ignore
-/** @typedef {import("./modules/archive")} */
+/** @typedef {import("./modules/archive.js")} */
 // @ts-ignore
-/** @typedef {import("./modules/application")} */
+/** @typedef {import("./modules/application.js")} */
 
 "use strict";
 //#region Post

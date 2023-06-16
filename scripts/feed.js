@@ -1,5 +1,5 @@
 // @ts-ignore
-/** @typedef {import("./structure")} */
+/** @typedef {import("./structure.js")} */
 
 "use strict";
 try {
@@ -94,9 +94,7 @@ try {
 								image.addEventListener(`click`, (event) => {
 									//#region Preview
 									const dialog = document.body.appendChild(document.createElement(`dialog`));
-									dialog.classList.add(`layer`);
-									dialog.style.display = `flex`;
-									dialog.style.justifyContent = `center`;
+									dialog.classList.add(`layer`, `with-padding`, `flex`, `centered`);
 									dialog.addEventListener(`click`, (event) => {
 										if (dialog === event.target) {
 											dialog.remove();
@@ -106,9 +104,6 @@ try {
 									{
 										const imgPreview = dialog.appendChild(document.createElement(`img`));
 										imgPreview.src = image.src;
-										imgPreview.style.maxWidth = `100%`;
-										imgPreview.style.maxHeight = `100%`;
-										imgPreview.style.objectFit = `contain`;
 									}
 									//#endregion
 								});

@@ -8,28 +8,29 @@
 	<title>Personal Webpage - Feed</title>
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="stylesheet" href="../styles/themes/material.css">
+	<link rel="stylesheet" href="../styles/local/feed.css">
 	<script src="../scripts/modules/application.js" defer></script>
 	<script src="../scripts/modules/color.js" defer></script>
 	<script src="../scripts/structure.js" defer></script>
 	<script src="../scripts/feed.js" defer></script>
 </head>
 
-<body style="position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;">
-	<header class="layer" style="width: 100%; display: grid; grid: '-1- feed gallery about -2-' max-content / 1fr max-content max-content max-content 1fr; gap: var(--size-gap);">
-		<a role="combobox" href="./feed.html" aria-checked="true" class="layer rounded" style="grid-area: feed;">
+<body class="flex column centered">
+	<header class="layer with-gap with-padding">
+		<a role="combobox" href="./feed.html" aria-checked="true" class="layer rounded with-padding">
 			<span>Feed</span>
 		</a>
-		<a role="combobox" href="./gallery.html" class="layer rounded" style="grid-area: gallery;">
+		<a role="combobox" href="./gallery.html" class="layer rounded with-padding">
 			<span>Gallery</span>
 		</a>
-		<a role="combobox" href="./about.html" class="layer rounded" style="grid-area: about;">
+		<a role="combobox" href="./about.html" class="layer rounded with-padding">
 			<span>About</span>
 		</a>
 	</header>
-	<main style="width: 100vmin; display: flex; flex-direction: column; gap: var(--size-gap); padding: var(--size-gap); overflow-y: auto;">
-		<section style="display: flex; flex-direction: column; gap: var(--size-gap);">
+	<main class="flex column with-gap with-padding">
+		<section class="flex column with-gap">
 			<template id="post-preset">
-				<article id="post-" class="layer rounded">
+				<article id="post-" class="layer rounded with-vertical-gap with-padding">
 					<picture class="flex -avatar">
 						<img alt="Avatar" class="avatar">
 					</picture>
@@ -39,13 +40,13 @@
 				</article>
 			</template>
 		</section>
-		<footer style="display: grid; grid: '-1- link-1 dot-1 link-2 dot-2 link-3 -2-' max-content 'copyright copyright copyright copyright copyright copyright copyright' max-content / 1fr max-content max-content max-content max-content max-content 1fr; place-items: center; gap: var(--size-gap);">
-			<a href="https://www.instagram.com/karapetian._/" style="grid-area: link-1;"><strong>Instagram</strong></a>
-			<pre style="grid-area: dot-1;"> • </pre>
-			<a href="https://youtube.com/@ovsikarapetyan" style="grid-area: link-2;"><strong>YouTube</strong></a>
-			<pre style="grid-area: dot-2;"> • </pre>
-			<a href="https://www.facebook.com/ovsanna.karapetyan.2004" style="grid-area: link-3;"><strong>Facebook</strong></a>
-			<span style="grid-area: copyright;">© <script>document.write(new Date().getFullYear())</script> Ovsi Karapetyan</span>
+		<footer class="with-gap">
+			<a href="https://www.instagram.com/karapetian._/" class="-link-1"><strong>Instagram</strong></a>
+			<pre class="-dot-1"> • </pre>
+			<a href="https://youtube.com/@ovsikarapetyan" class="-link-2"><strong>YouTube</strong></a>
+			<pre class="-dot-2"> • </pre>
+			<a href="https://www.facebook.com/ovsanna.karapetyan.2004" class="-link-3"><strong>Facebook</strong></a>
+			<span class="-copyright">© <script>document.write(new Date().getFullYear())</script> Ovsi Karapetyan</span>
 		</footer>
 	</main>
 </body>

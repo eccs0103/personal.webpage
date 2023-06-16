@@ -1,0 +1,124 @@
+@keyframes appear {
+	0% {
+		filter: blur(4px) grayscale(1);
+	}
+
+	100% {
+		filter: blur(0px) grayscale(0);
+	}
+}
+
+body {
+	/* background-attachment: scroll; */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: 100%;
+	background-clip: border-box;
+	background-origin: border-box;
+	animation: appear 0.4s ease-in-out 0s 1 both;
+}
+
+header {
+	width: 100%;
+	display: grid;
+	grid-template:
+		'-1-	feed	gallery	about	-2-' max-content
+		/ 1fr max-content max-content max-content 1fr
+	;
+}
+
+header > a[href="./feed.html"] {
+	grid-area: feed;
+}
+
+header > a[href="./gallery.html"] {
+	grid-area: gallery;
+}
+
+header > a[href="./about.html"] {
+	grid-area: about;
+}
+
+main {
+	width: 100vmin;
+	overflow-y: auto;
+}
+
+article[id^="post-"] {
+	display: grid;
+	grid: 'avatar title' 1fr 'avatar date' 1fr 'container container' max-content / max-content 1fr;
+}
+
+article[id^="post-"] > picture.-avatar {
+	grid-area: avatar;
+	aspect-ratio: 1;
+}
+
+article[id^="post-"] > picture.-avatar > img.avatar {
+	content: url(../../resources/storage/image-5.png);
+	height: calc(var(--size-standart) * 1.5);
+	border-radius: 50vmin;
+}
+
+article[id^="post-"] > h3.-title {
+	grid-area: title;
+	align-self: flex-end;
+}
+
+article[id^="post-"] > time.-date {
+	grid-area: date;
+	align-self: flex-start;
+}
+
+article[id^="post-"] > div.-container {
+	grid-area: container;
+	margin-top: var(--size-gap);
+}
+
+article[id^="post-"] > div.-container br {
+	display: block;
+	content: "";
+	margin-bottom: var(--size-gap);
+}
+
+article[id^="post-"] > div.-container img {
+	max-width: 100%;
+}
+
+article[id^="post-"] > div.-container :where(ol, ul) {
+	list-style-position: inside;
+}
+
+footer {
+	display: grid;
+	grid-template:
+		'-1-		link-1		dot-1		link-2		dot-2		link-3		-2-			' max-content
+		'copyright	copyright	copyright	copyright	copyright	copyright	copyright	' max-content
+		/ 1fr max-content max-content max-content max-content max-content 1fr
+	;
+	place-items: center;
+}
+
+footer > a.-link-1 {
+	grid-area: link-1;
+}
+
+footer > pre.-dot-1 {
+	grid-area: dot-1;
+}
+
+footer > a.-link-2 {
+	grid-area: link-2;
+}
+
+footer > pre.-dot-2 {
+	grid-area: dot-2;
+}
+
+footer > a.-link-3 {
+	grid-area: link-3;
+}
+
+footer > span.-copyright {
+	grid-area: copyright;
+}
